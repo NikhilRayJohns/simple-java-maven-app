@@ -26,7 +26,7 @@ pipeline {
         }
 	stage('Docker Build') {		
 		steps{
-			docker.build("nrj/docker-jenkins-pipeline:${env.BUILD_NUMBER}")
+			docker.build("nrj/docker-jenkins-pipeline:test1")
 		}
 	}
         
