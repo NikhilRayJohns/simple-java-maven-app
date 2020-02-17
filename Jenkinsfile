@@ -10,9 +10,9 @@ pipeline {
     }
     stages {
         stage('Build') {
-            steps {
-                sh 'mvn -B -DskipTests clean package'
-            }
+			dir('/') {
+				sh 'mvn -B -DskipTests clean package'
+			}
         }
         stage('Test') {
             steps {
@@ -24,17 +24,11 @@ pipeline {
                 }
             }
         }
-        stage('Deliver') { 
-            steps {
-                sh './jenkins/scripts/deliver.sh' 
-            }
-        }
-		stage('Docker Build') {
-			agent any
-			steps {
-			sh 'docker build -t nrj/hello-worl:test .'
-			}
+	stage('Docker Build') {		
+		dir('/') {
+			docker.build("nrj/docker-jenkins-pipeline:${env.BUILD_NUMBER}")
 		}
+	}
         
     }
 }
