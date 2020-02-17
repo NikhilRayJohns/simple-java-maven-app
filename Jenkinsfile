@@ -23,12 +23,12 @@ pipeline {
                     junit 'target/surefire-reports/*.xml'
                 }
             }
-        }
-	stage('Docker Build') {		
-		steps{
-			docker.build("nrj/docker-jenkins-pipeline:test1")
+        } 
+	stage('Docker Build') {
+		agent any
+			steps {
+				sh 'docker build -t nrj/hello-worl:test .'
+			}
 		}
-	}
-        
     }
 }
