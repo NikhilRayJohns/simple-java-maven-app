@@ -29,5 +29,12 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh' 
             }
         }
+		stage('Docker Build') {
+			agent any
+			steps {
+			sh 'docker build -t nrj/hello-worl:test .'
+			}
+		}
+        
     }
 }
