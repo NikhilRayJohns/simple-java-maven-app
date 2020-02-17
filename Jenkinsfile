@@ -27,7 +27,7 @@ pipeline {
 	stage('Docker Build') {
 		agent any
 			steps {
-				sh 'docker build -t nrj/hello-worl:test .'
+				docker.build("nrj/docker-jenkins-pipeline:test")
 			}
 		}
     }
