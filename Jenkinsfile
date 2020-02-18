@@ -33,5 +33,3 @@ pipeline {
 		}
     }
 }
-
-docker push 172.31.31.200:8083/nrjsamplejavaapp:test3
