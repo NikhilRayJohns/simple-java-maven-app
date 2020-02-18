@@ -25,7 +25,9 @@ pipeline {
 		stage('DockerPush'){
 			steps{
                 script{
-					app = docker.build('nrj/samplejavaapp:test1')
+					    docker.withRegistry('172.31.30.101:8081/service/rest/v1/components?repository=Jenkins-Docker', 'nexus-credentials') {
+							app.push("latest")
+						}		
 				}
             }
 		}
