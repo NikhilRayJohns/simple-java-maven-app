@@ -24,11 +24,7 @@ pipeline {
 		}
 		stage('DockerPush'){
 			steps{
-                script{
-					    docker.withRegistry('http://172.31.30.101:8081/repository/Jenkins-Docker', 'nexus-credentials') {
-							app.push("latest")
-						}		
-				}
+					sh 'docker push 172.31.31.200:8083/nrjsamplejavaapp:test3'
             }
 		}
 		stage('DockerSave'){
