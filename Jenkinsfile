@@ -24,14 +24,14 @@ pipeline {
 		}
 		stage('DockerPush'){
 			steps{
-					sh 'docker push 172.31.31.200:8083/nrjsamplejavaapp:test3'
-            }
-		}
-		stage('DockerSave'){
-			agent any
-			steps{
-				sh 'docker images | grep nrj'
+                script{
+					    docker.withRegistry('http://172.31.31.200:8083/', 'nexus-credentials') {
+							app.push("test3")
+						}		
+				}
             }
 		}
     }
 }
+
+docker push 172.31.31.200:8083/nrjsamplejavaapp:test3
