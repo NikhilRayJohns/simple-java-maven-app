@@ -15,5 +15,12 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
+		stage('DockerImage'){
+			steps{
+                script{
+					app = docker.build('nrj/samplejavaapp:test1')
+				}
+            }
+		}
     }
 }
