@@ -8,27 +8,11 @@ pipeline {
     options {
         skipStagesAfterUnstable()
     }
-    stages {
-        stage('Build') {
-			steps {
-				sh 'mvn -B -DskipTests clean package'
-			}
+    stages{
+        stage('Build'){
+            steps{
+                sh 'mvn -B -DskipTests clean package'
+            }
         }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
-        } 
-	stage('Docker Build') {
-		agent any
-			steps {
-				docker.build("nrj/docker-jenkins-pipeline:test")
-			}
-		}
     }
 }
