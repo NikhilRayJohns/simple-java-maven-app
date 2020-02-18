@@ -30,6 +30,7 @@ pipeline {
             }
 		}
 		stage('DockerSave'){
+			agent any
 			steps{
 				sh 'docker images | grep nrj'
             }
