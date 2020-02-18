@@ -22,5 +22,17 @@ pipeline {
 				}
             }
 		}
+		stage('DockerPush'){
+			steps{
+                script{
+					app = docker.build('nrj/samplejavaapp:test1')
+				}
+            }
+		}
+		stage('DockerSave'){
+			steps{
+				sh 'docker images | grep nrj'
+            }
+		}
     }
 }
