@@ -26,7 +26,7 @@ pipeline {
 			steps{
                 script{
 					    docker.withRegistry('http://172.31.31.200:8083/', 'nexus-credentials') {
-							app.push("test6")
+							app.push("test7")
 						}		
 				}
             }
